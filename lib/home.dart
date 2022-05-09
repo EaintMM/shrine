@@ -16,11 +16,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shrine/model/product.dart';
 import 'package:shrine/model/product_repository.dart';
+import 'package:shrine/supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  // TODO: Make a collection of cards (102)
+/* 
   List<Card> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(Category.all);
     if (products.isEmpty) {
@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
 
     return products.map((product) {
       return Card(
+        elevation: 0.0,
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,19 +49,23 @@ class HomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       product.name,
-                      style: theme.textTheme.headline6,
+                      style: theme.textTheme.button,
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 4.0,
                     ),
                     Text(
                       formatter.format(product.price),
                       //'${product.price}',
-                      style: theme.textTheme.subtitle2,
+                      style: theme.textTheme.caption,
                     )
                   ],
                 ),
@@ -70,7 +75,7 @@ class HomePage extends StatelessWidget {
         ),
       );
     }).toList();
-  }
+  } */
 
   // TODO: Add a variable for Category (104)
   @override
@@ -110,12 +115,15 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: GridView.count(
+      body: AsymmetricView(
+        products: ProductsRepository.loadProducts(Category.all),
+      ),
+      /* GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 8.0 / 9.0,
         padding: EdgeInsets.all(16.0),
         children: _buildGridCards(context),
-      ),
+      ), */
       resizeToAvoidBottomInset: true,
     );
   }

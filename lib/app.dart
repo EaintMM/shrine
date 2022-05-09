@@ -13,6 +13,8 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
+import 'package:shrine/supplemental/cut_corners_border.dart';
 
 import 'home.dart';
 import 'login.dart';
@@ -34,10 +36,63 @@ class ShrineApp extends StatelessWidget {
         // TODO: Pass _currentCategory for frontLayer (104)
         // TODO: Change backLayer field value to CategoryMenuPage (104)
       },
-      // TODO: Add a theme (103)
+      theme: _shrineTheme,
     );
   }
 }
 
-// TODO: Build a Shrine Theme (103)
+final ThemeData _shrineTheme = _buildShrineTheme();
+
+ThemeData _buildShrineTheme() {
+  final ThemeData base = ThemeData.light();
+  return base.copyWith(
+    colorScheme: base.colorScheme.copyWith(
+      primary: shrinePink100,
+      onPrimary: shrineBrown900,
+      secondary: shrineBrown900,
+      error: shrineErrorRed,
+    ),
+    textTheme: _buildShrineTextTheme(base.textTheme),
+    textSelectionTheme: TextSelectionThemeData(
+      selectionColor: shrinePink100,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: CutCornersBorder(),
+      focusedBorder: CutCornersBorder(
+        borderSide: BorderSide(
+          width: 2.0,
+          color: shrineBrown900,
+        ),
+      ),
+      floatingLabelStyle: TextStyle(
+        color: shrineBrown900,
+      ),
+    ),
+  );
+}
+
 // TODO: Build a Shrine Text Theme (103)
+TextTheme _buildShrineTextTheme(TextTheme base) {
+  return base
+      .copyWith(
+        headline5: base.headline5!.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        headline6: base.headline6!.copyWith(
+          fontSize: 18.0,
+        ),
+        caption: base.caption!.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+        ),
+        bodyText1: base.bodyText1!.copyWith(
+          fontWeight: FontWeight.w500,
+          fontSize: 16.0,
+        ),
+      )
+      .apply(
+        fontFamily: 'Rubik',
+        displayColor: shrineBrown900,
+        bodyColor: shrineBrown900,
+      );
+}
