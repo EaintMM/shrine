@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-enum Category {
+enum Categories {
   all,
   accessories,
   clothing,
@@ -28,7 +28,7 @@ class Product {
     required this.price,
   });
 
-  final Category category;
+  final Categories category;
   final int id;
   final bool isFeatured;
   final String name;

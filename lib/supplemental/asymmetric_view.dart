@@ -76,7 +76,7 @@ class AsymmetricView extends StatelessWidget {
     return (input / 2).ceil() * 3 - 1;
   }
 
-  int _listItemCount(int totalItems) {
+  int _listItemCount(int totalItems) {                                                 
     if (totalItems % 3 == 0) {
       return totalItems ~/ 3 * 2;
     } else {
